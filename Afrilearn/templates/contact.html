@@ -53,6 +53,19 @@
                             <h5>Contact Us</h5>
                             <h2>Keep in touch</h2>
                         </div> <!-- section title -->
+
+
+
+
+                        {% if message_sent%}
+                        <div class="alert alert-success" style="margin-top:20px;">
+                            Your message has been sent successfully! 
+                        </div>
+                        {% endif %}
+
+
+
+
                         <div class="main-form pt-45">
                             <form id="contact-form" action="{% url 'contact' %}" method="post" data-toggle="validator">
                                 {% csrf_token %}
@@ -136,7 +149,7 @@
                         </ul>
                     </div> <!-- contact address -->
                     <div class="map mt-30">
-                        <div id="contact-map"></div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.979216215481!2d3.311078174994016!3d6.649497593345148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b97a4ef27935d%3A0x981ed21351f05f48!2sAtibyan%20Tech%20Ng!5e0!3m2!1sen!2sng!4v1764765111590!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div> <!-- map -->
                 </div>
             </div> <!-- row -->

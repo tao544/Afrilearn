@@ -171,6 +171,10 @@
                                         <a href="{% url 'contact' %}">Contact</a>
                                        
                                     </li>
+                                    {% comment %} <li class="nav-item">
+                                        <a href="{% url 'documentation' %}">Documentation</a>
+                                       
+                                    </li> {% endcomment %}
                                 </ul>
                             </div>
                         </nav> <!-- nav -->
@@ -259,11 +263,11 @@
                                 <h6>Support</h6>
                             </div>
                             <ul>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>FAQS</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Privacy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Policy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i>Documentation</a></li>
+                                <li><a href="{% url 'faqs' %}"><i class="fa fa-angle-right"></i>FAQS</a></li>
+                                <li><a href="{% url 'privacy' %}"><i class="fa fa-angle-right"></i>Privacy</a></li>
+                                <li><a href="{% url 'policy' %}"><i class="fa fa-angle-right"></i>Policy</a></li>
+                                <li><a href="{% url 'support' %}"><i class="fa fa-angle-right"></i>Support</a></li>
+                                <li><a href="{% url 'documentation' %}"><i class="fa fa-angle-right"></i>Documentation</a></li>
                             </ul>
                         </div> <!-- support -->
                     </div>
@@ -367,7 +371,7 @@
     <script src=" {% static 'js/validator.min.js' %}"></script>
     
     <!--====== Ajax Contact js ======-->
-    <script src=" {% static 'js/ajax-contact.js' %}"></script>
+    {% comment %} <script src=" {% static 'js/ajax-contact.js' %}"></script> {% endcomment %}
     
     <!--====== Main js ======-->
     <script src=" {% static 'js/main.js' %}"></script>
