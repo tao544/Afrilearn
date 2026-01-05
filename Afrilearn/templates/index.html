@@ -190,45 +190,21 @@
                             <h3>Upcoming events</h3>
                         </div> <!-- event title -->
                         <ul>
+                            {% for event in events %}
                             <li>
                                 <div class="singel-event">
-                                    <span><i class="fa fa-calendar"></i> 10 Jan 2026</span>
-                                    <a href="events-singel.html"><h4>AI in Education Webinar</h4></a>
-                                    <span><i class="fa fa-clock-o"></i> 10:00 Am - 1:00 Pm</span>
-                                    <span><i class="fa fa-map-marker"></i> Online</span>
-                                    <p>Explore the future of AI in learning and                                           
-                                       how it can enhance educational 
-                                       outcomes worldwide.
+                                    <span><i class="fa fa-calendar"></i> {{ event.event_date|date:"d M Y"}}</span>
+                                    <a href="{% url 'event_detail' event.slug %}"><h4>{{ event.title}}</h4></a>
+                                    <span><i class="fa fa-clock-o"></i> {{ event.start_time|time:"g:i A"}} - {{ event.end_time|time:"g:i A"}} </span>
+                                    <span><i class="fa fa-map-marker"></i> {{ event.location}}</span>
+                                    <p>{{ event.description|truncatewords:20}}
                                     </p>  
                                 </div>
                             </li>
-                            <li>
-                                <div class="singel-event">
-                                    <span><i class="fa fa-calendar"></i> 25 Jan 2026 </span>
-                                    <a href="events-singel.html"><h4>Coding Bootcamp Orientation </h4></a>
-                                    <span><i class="fa fa-clock-o"></i> 9:00 Am - 5:00 Pm</span>
-                                    <span><i class="fa fa-map-marker"></i>Lagos campus</span>
-                                     <p>Orientation for our coding bootcamp. Meet instructors, understand the syllabus, and start your journey in web development</p> 
-                                </div>
-                            </li>
-                            <li>
-                                <div class="singel-event">
-                                    <span><i class="fa fa-calendar"></i> 5 Feb 2026 </span>
-                                    <a href="events-singel.html"><h4>Digital Marketing Workshop </h4></a>
-                                    <span><i class="fa fa-clock-o"></i> 11:00 Am - 3:00 Pm</span>
-                                    <span><i class="fa fa-map-marker"></i> Online</span>
-                                    <p>Hands-on workshop covering SEO, social media strategies, and content marketing. </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="singel-event">
-                                    <span><i class="fa fa-calendar"></i> 15 Feb 2026 </span>
-                                    <a href="events-singel.html"><h4>Data Science Hackathon </h4></a>
-                                    <span><i class="fa fa-clock-o"></i> 10:00 Am - 6:00 Pm</span>
-                                    <span><i class="fa fa-map-marker"></i> Online</span>
-                                    <p>Collaborate, learn, and build machine learning solutions in a competitive, fun environment.</p>
-                                </div>
-                            </li>
+
+                            {% empty %}
+                            <li><p>No upcoming events at the moment.</p></li>
+                            {% endfor %}
                         </ul> 
                     </div> <!-- about event -->
                 </div>
@@ -517,50 +493,19 @@
                 <div class="col-lg-6 offset-lg-1">
                     <div class="teachers mt-20">
                         <div class="row">
+                            {% for teacher in teachers %}
                             <div class="col-sm-6">
                                 <div class="singel-teachers mt-30 text-center">
                                     <div class="image">
-                                        <img src="{% static 'images/markt.png' %}" alt="Teachers">
+                                        <img src="{{ teacher.photo.url }}" alt="Teachers">
                                     </div>
                                     <div class="cont">
-                                        <a href="teachers-singel.html"><h6>Mark Adebayo</h6></a>
-                                        <span> Lead Instructor (Web Development)</span>
+                                        <a href="teachers-singel.html"><h6>{{ teacher.name }}</h6></a>
+                                        <span>{{ teacher.title }}</span>
                                     </div>
                                 </div> <!-- singel teachers -->
                             </div>
-                            <div class="col-sm-6">
-                                <div class="singel-teachers mt-30 text-center">
-                                    <div class="image">
-                                        <img src="{% static 'images/aishat.png' %}" alt="Teachers">
-                                    </div>
-                                    <div class="cont">
-                                        <a href="teachers-singel.html"><h6>Aisha Bello </h6></a>
-                                        <span> Digital Marketing Specialist</span>
-                                    </div>
-                                </div> <!-- singel teachers -->
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="singel-teachers mt-30 text-center">
-                                    <div class="image">
-                                        <img src="{% static 'images/johnt.png' %}" alt="Teachers">
-                                    </div>
-                                    <div class="cont">
-                                        <a href="teachers-singel.html"><h6>John Okafor</h6></a>
-                                        <span> Data Scientist & AI Mentor </span>
-                                    </div>
-                                </div> <!-- singel teachers -->
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="singel-teachers mt-30 text-center">
-                                    <div class="image">
-                                        <img src="{% static 'images/fatimat.png' %}" alt="Teachers">
-                                    </div>
-                                    <div class="cont">
-                                        <a href="teachers-singel.html"><h6>Fatima Suleiman</h6></a>
-                                        <span> UX/UI Designer</span>
-                                    </div>
-                                </div> <!-- singel teachers -->
-                            </div>
+                            {% endfor %}
                         </div> <!-- row -->
                     </div> <!-- teachers -->
                 </div>

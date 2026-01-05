@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 from .forms import ContactForm
+from .models import Event, Teacher
+from django.utils.timezone import now
+from django.core.paginator import Paginator
 
 
 def home(request):
-    return render(request, "index.html")
+    teachers = Teacher.objects.filter(is_featured=True)[:4]
+    events = Event.objects.filter(is_published=True, event_date__gte=now().date())[:4]
+    return render(request, "index.html", {"events": events,  "teachers": teachers })
 
 
 def about(request):
@@ -59,14 +64,29 @@ def blog(request):
 def teachers(request):
     return render(request, "teachers.html")
 
+def teacher_detail(request, slug):
+    teacher =Teacher.objects.get(slug=slug)
+    return render(request, "teacher-single.html", {"teacher": teacher})
+
 def support(request):
     return render(request, "support.html")
 
 def gallery(request):
     return render(request, "gallery.html")
 
+def event_detail(request, slug):
+    event =Event.objects.get(slug=slug)
+    return render(request, "event-single.html", {"event": event})
+
 def events(request):
-    return render(request, "events.html")
+    event_list = Event.objects.filter(
+    is_published=True,
+    event_date__gte=now().date()).order_by('event_date')
+    paginator = Paginator(event_list, 6)
+    page_number = request.GET.get('page')
+    events = paginator.get_page(page_number)
+
+    return render(request, "events.html", {"events": events})
 
 def documentation(request):
     return render(request, "documentation.html")
